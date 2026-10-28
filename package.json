@@ -1,0 +1,16 @@
+{
+  "name": "auto-oneclass",
+  "version": "1.1.0",
+  "private": true,
+  "description": "CDP automation for the OneClass (一课英语) study-plan exercise pages",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "web": "node web/server.mjs",
+    "list": "node src/cdp.mjs list",
+    "extract": "node src/extract.mjs",
+    "play": "node src/play.mjs",
+    "progress": "node src/progress.mjs"
+  },
+  "license": "MIT"
+}

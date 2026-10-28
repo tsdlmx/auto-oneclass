@@ -1,0 +1,14 @@
+# extracted question dumps (course material, not ours to publish)
+x-*.json
+# answer payloads you build while using it
+a-*.json
+!examples/*.json
+node_modules/
+.DS_Store
+*.log
+
+# web control panel runtime state
+web/config.json
+web/.data/
+web/.edge-profile/
+llm-key.txt

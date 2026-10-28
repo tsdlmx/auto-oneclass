@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>一课英语 · 刷题控制台</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>一课英语 · 刷题控制台</h1>
+  </div>
+  <div class="pills">
+    <span class="pill" id="pill-login">未登录</span>
+    <span class="pill" id="pill-browser">浏览器未启动</span>
+    <span class="pill" id="pill-job">空闲</span>
+  </div>
+</header>
+
+<main>
+  <!-- 1. 登录 -->
+  <section class="card" id="card-login">
+    <div class="card-head">
+      <h2>1 · 微信扫码登录</h2>
+      <button class="ghost" id="btn-relogin" hidden>重新扫码</button>
+    </div>
+    <div class="qr-wrap">
+      <div class="qr-frame">
+        <img id="qr-img" alt="微信登录二维码" />
+        <div class="qr-mask" id="qr-mask">
+          <span id="qr-mask-text">点下面的按钮获取二维码</span>
+        </div>
+      </div>
+      <div class="qr-side">
+        <p class="status" id="login-msg">尚未开始</p>
+        <ol class="hint">
+          <li>点「获取二维码」，用手机微信扫一扫</li>
+          <li>手机上点「确认登录」</li>
+          <li>页面会自动跳到已登录状态</li>
+        </ol>
+        <div class="row">
+          <button class="primary" id="btn-login">获取二维码</button>
+          <button class="ghost" id="btn-refresh-qr" hidden>刷新二维码</button>
+        </div>
+        <p class="tiny">扫码只用于建立本机浏览器里的会话，不上传任何凭据。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 设置 -->
+  <section class="card" id="card-config">
+    <div class="card-head">
+      <h2>2 · 刷题设置</h2>
+      <button class="ghost" id="btn-scan-weeks">读取计划表</button>
+    </div>
+
+    <div class="field">
+      <label>刷哪几周（单元）</label>
+      <div class="weeks" id="week-grid"></div>
+      <p class="tiny">点选要刷的周；灰点是计划表里读到的题量，绿色表示该周已全部完成。</p>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>答案模式</label>
+        <div class="radios">
+          <label class="radio"><input type="radio" name="mode" value="perfect" checked /><span>全对</span></label>
+          <label class="radio"><input type="radio" name="mode" value="mistakes" /><span>故意错</span></label>
+          <input type="number" id="mistakes" min="1" max="5" value="1" class="num" />
+          <span class="tiny inline">道 / 每套题</span>
+        </div>
+        <label class="check"><input type="checkbox" id="skipFinished" checked /><span>跳过计划表里已经做过的题</span></label>
+      </div>
+
+      <div class="field">
+        <label>模型（解题用）</label>
+        <div class="row tight">
+          <input id="baseUrl" class="text" placeholder="https://api.deepseek.com" />
+          <input id="model" class="text" placeholder="deepseek-chat" />
+        </div>
+        <div class="row tight">
+          <input id="apiKey" class="text" type="password" placeholder="sk-... （留空则保持原值）" />
+          <button class="ghost" id="btn-save">保存</button>
+        </div>
+        <p class="tiny" id="key-state">未配置 key</p>
+      </div>
+    </div>
+
+    <div class="row end">
+      <button class="primary big" id="btn-start" disabled>开始刷题</button>
+      <button class="ghost" id="btn-stop" hidden>停止</button>
+    </div>
+  </section>
+
+  <!-- 3. 日志 -->
+  <section class="card" id="card-log">
+    <div class="card-head">
+      <h2>3 · 运行日志</h2>
+      <button class="ghost" id="btn-clear">清屏</button>
+    </div>
+    <div class="log" id="log"></div>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
